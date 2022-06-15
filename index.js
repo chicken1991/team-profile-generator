@@ -13,8 +13,8 @@ const intern = require('./lib/Intern');
 let manObj;
 let empObj;
 
-async function promptManager(){
-  return inquirer.prompt([
+const promptInit = () => {
+  inquirer.prompt([
     {
       type: 'input',
       name: 'name',
@@ -35,12 +35,15 @@ async function promptManager(){
       name: 'officeNumber',
       message: "Manager's office number: ",
     }
-  ]);
+  ])
+  .then(promptProceed)
+  .catch((err) => console.log(err));
 };
 
-async function promptProceed() {
-  return inquirer.prompt([
-    {
+const promptProceed = () => {
+  inquirer
+  .prompt
+  ([{
       type: 'list',
       name: 'answer',
       message: "Would you like to add an Engineer, Intern, or exit? ",
@@ -49,8 +52,20 @@ async function promptProceed() {
         "Intenrn",
         "Exit"
       ]
-    }
-  ]);
+    }])
+  .then((answer) => {
+    if (answer === "Engineer") {
+      promptEngineer();
+    } else if (answer === "Intenrn") {
+      promptIntern();
+    } else {
+      console.log("Exiting and writing to file")
+    };
+  })
+  .catch((err) => console.error(err));
+
+
+
 };
 
 // input function
@@ -61,21 +76,11 @@ async function promptProceed() {
 // after each selection, add option to add Engineer or Intern OR Finish
 function init() {
   //prompts for manager info
-  promptManager()
-    .then((answers) => console.log(answers)) // console log for now TODO: write this to an object which can be called, then written to html
-    .catch((err) => console.error(err));
+  promptInit()
+    // .then((answers) => console.log(answers)) // console log for now TODO: write this to an object which can be called, then written to html
+    // .catch((err) => console.error(err));
 
-  promptProceed()
-    .then((answer) => {
-      if (answer === "Engineer") {
-        promptEngineer();
-      } else if (answer === "Intenrn") {
-        promptIntern();
-      } else {
-        console.log("Exiting and writing to file")
-      };
-    })
-    .catch((err) => console.error(err));
+  // promptProceed()
   //prompt to add intern, engineer, or Finish
   // promptEmployee();
 }
