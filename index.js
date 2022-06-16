@@ -111,7 +111,6 @@ const promptProceed = () => {
       ]
 }])
   .then(val => { 
-    console.log("You have selected " + val.answer);
     if (val.answer === "Engineer") {
       promptEngineer();
     } else if (val.answer === "Intern") {
@@ -132,15 +131,9 @@ function appendToFile(data) {
 }
 
 function init() {
-
   //Reset index.html?
-  
   //prompts for manager info
   promptManager()
-  
 }
-
-
-
 
 init();
