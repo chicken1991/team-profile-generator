@@ -1,19 +1,16 @@
 // Dependancies
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateManager = require('./lib/generateManager');
+const generateFooter = require('./lib/generateFooter');
 
 // lib files
 const manager = require('./lib/Manager');
 const engineer = require('./lib/Engineer');
 const intern = require('./lib/Intern');
-// const { exit } = require('process'); //wtf is this? I don't remember this
+// const { exit } = require('process');  =============     wtf is this? I don't remember this
 
-//TODO: Create an object that utilizes the manager, engineer, and intern classes to append appropriate object properties based
-// on the user input
-let manObj;
-let empObj;
-
-const promptInit = () => {
+const promptManager = () => {
   inquirer.prompt([
     {
       type: 'input',
@@ -36,7 +33,7 @@ const promptInit = () => {
       message: "Manager's office number: ",
     }
   ])
-  // .then(writetohtml or something)
+  .then((answers) => appendToFile(generateManager(answers.name, answers.id, answers.email, answers.officeNumber)))
   .then(promptProceed)
   .catch((err) => console.log(err));
 };
@@ -119,29 +116,23 @@ const promptProceed = () => {
       promptIntern();
     } else {
       console.log("Exiting")
+      //Append the footer of the HTML file
+      appendToFile(generateFooter);
     };
   })
   .catch((err) => console.error(err));
-
-
-
 };
 
-// input function
-// Demand to fill out manager - cannot continue without manager
-// Provide option to add either Engineer or Intern
-// IF engineer, proceed with adding new Engineer
-// IF intern, proceed with adding new Intern
-// after each selection, add option to add Engineer or Intern OR Finish
+function appendToFile(data) {
+  fs.appendFile('./dist/index.html', data, (err) =>
+  err ? console.error(err) : console.log('Sucessfully wrote file') 
+  );
+}
+
 function init() {
   //prompts for manager info
-  promptInit()
-    // .then((answers) => console.log(answers)) // console log for now TODO: write this to an object which can be called, then written to html
-    // .catch((err) => console.error(err));
-
-  // promptProceed()
-  //prompt to add intern, engineer, or Finish
-  // promptEmployee();
+  promptManager()
+  
 }
 
 
