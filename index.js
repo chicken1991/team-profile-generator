@@ -36,6 +36,64 @@ const promptInit = () => {
       message: "Manager's office number: ",
     }
   ])
+  // .then(writetohtml or something)
+  .then(promptProceed)
+  .catch((err) => console.log(err));
+};
+
+
+const promptEngineer = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: "Engineer's name: ",
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: "Engineer's Employee ID",
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: "Engineer's email address: ",
+    },
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: "Engineer's Github Username: ",
+    }
+  ])
+  // .then(writetohtml or something)
+  .then(promptProceed)
+  .catch((err) => console.log(err));
+};
+
+const promptIntern = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: "Intern's name: ",
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: "Intern's Employee ID",
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: "Intern's email address: ",
+    },
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: "Intern's School: ",
+    }
+  ])
+  // .then(writetohtml or something)
   .then(promptProceed)
   .catch((err) => console.log(err));
 };
@@ -46,20 +104,21 @@ const promptProceed = () => {
   ([{
       type: 'list',
       name: 'answer',
-      message: "Would you like to add an Engineer, Intern, or exit? ",
+      message: "Would you like to add a new Engineer, Intern - or exit? ",
       choices: [
         "Engineer",
-        "Intenrn",
+        "Intern",
         "Exit"
       ]
-    }])
-  .then((answer) => {
-    if (answer === "Engineer") {
+}])
+  .then(val => { 
+    console.log("You have selected " + val.answer);
+    if (val.answer === "Engineer") {
       promptEngineer();
-    } else if (answer === "Intenrn") {
+    } else if (val.answer === "Intern") {
       promptIntern();
     } else {
-      console.log("Exiting and writing to file")
+      console.log("Exiting")
     };
   })
   .catch((err) => console.error(err));
@@ -85,8 +144,7 @@ function init() {
   // promptEmployee();
 }
 
-//create HTML and insert appropriate ${data.stuff} for each modal
-const renderHTML = (data) => { };
+
+
 
 init();
-renderHTML();
