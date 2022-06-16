@@ -3,6 +3,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateManager = require('./lib/generateManager');
 const generateFooter = require('./lib/generateFooter');
+const generateEngineer = require('./lib/generateEngineer');
+const generateIntern = require('./lib/generateIntern');
 
 // lib files
 const manager = require('./lib/Manager');
@@ -58,11 +60,11 @@ const promptEngineer = () => {
     },
     {
       type: 'input',
-      name: 'officeNumber',
+      name: 'github',
       message: "Engineer's Github Username: ",
     }
   ])
-  // .then(writetohtml or something)
+  .then((answers) => appendToFile(generateEngineer(answers.name, answers.id, answers.email, answers.github)))
   .then(promptProceed)
   .catch((err) => console.log(err));
 };
@@ -86,11 +88,11 @@ const promptIntern = () => {
     },
     {
       type: 'input',
-      name: 'officeNumber',
+      name: 'school',
       message: "Intern's School: ",
     }
   ])
-  // .then(writetohtml or something)
+  .then((answers) => appendToFile(generateIntern(answers.name, answers.id, answers.email, answers.school)))
   .then(promptProceed)
   .catch((err) => console.log(err));
 };
@@ -130,6 +132,9 @@ function appendToFile(data) {
 }
 
 function init() {
+
+  //Reset index.html?
+  
   //prompts for manager info
   promptManager()
   
