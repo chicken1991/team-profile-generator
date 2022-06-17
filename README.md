@@ -26,6 +26,15 @@
   <a name="Usage"></a>
   ## Usage
   Once installed, simply run "node index.js" in the root folder to start the app
+
+  [Link to video demo]()
+
+  ![demo1](./assets/images/demo1.png)
+
+  * * * * * 
+
+  ![demo2](./assets/images/demo2.png)
+
   
   <a name="Contribute"></a>
   ## How to Contribute
