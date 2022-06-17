@@ -27,7 +27,7 @@
   ## Usage
   Once installed, simply run "node index.js" in the root folder to start the app
 
-  [Link to video demo]()
+  ## [Link to video demo](https://drive.google.com/file/d/1igTeZlXTQQHtQo3k4e8jN_BfxQODx0fx/view)
 
   ![demo1](./assets/images/demo1.png)
 
