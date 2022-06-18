@@ -12,7 +12,6 @@
   1. [Description](#Description)
   2. [Installation](#Installation)
   3. [Usage](#Usage)
-  4. [How to Contribute](#contribute)
   5. [Tests](#Tests)
   6. [Questions](#questions)
   7. [License](#License)
@@ -34,11 +33,6 @@
   * * * * * 
 
   ![demo2](./assets/images/demo2.png)
-
-  
-  <a name="Contribute"></a>
-  ## How to Contribute
-  
 
   <a name="Tests"></a>
   ## Tests
